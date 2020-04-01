@@ -2,7 +2,7 @@
 
 FROM centos:7
 
-MAINTAINER Simon Hofmann "simon.hofmann@consol.de"
+MAINTAINER Simon Hofmann "q409640976@gmail.com"
 ENV REFRESHED_AT 2018-10-29
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
@@ -17,7 +17,7 @@ LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firef
 ENV DISPLAY=:1 \
     VNC_PORT=5901 \
     NO_VNC_PORT=6901
-EXPOSE $VNC_PORT $NO_VNC_PORT
+EXPOSE $VNC_PORT $NO_VNC_PORT 80 8080 8888 888 443
 
 ### Envrionment config
 ENV HOME=/headless \
@@ -60,4 +60,5 @@ RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 USER 0
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
+VOLUME ["/tmp","/mnt"]
 CMD ["--wait"]
