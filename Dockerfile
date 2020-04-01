@@ -13,7 +13,7 @@ LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firef
 
 ## Connection ports for controlling the UI:
 # VNC port:5901
-# noVNC webport, connect via http://IP:6901/?password=vncpassword
+# noVNC webport, connect via http://IP:6901/?password=123456
 ENV DISPLAY=:1 \
     VNC_PORT=5901 \
     NO_VNC_PORT=6901
@@ -27,10 +27,10 @@ ENV HOME=/headless \
     NO_VNC_HOME=/headless/noVNC \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1280x1024 \
-    VNC_PW=vncpassword \
+    VNC_PW=123456 \
     VNC_VIEW_ONLY=false
 WORKDIR $HOME
-
+USER 0
 ### Add all install scripts for further steps
 ADD ./src/common/install/ $INST_SCRIPTS/
 ADD ./src/centos/install/ $INST_SCRIPTS/
